@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
   steps:
-    -name: Checkout code
+    - name: Checkout code
      uses: actions/checkout@v3 
 
-     -name: Install dependencies
+     - name: Install dependencies
       run: npm install
 
-      -name: Build project
+      - name: Build project
        run: npm run build
 
-       -name: Build docker image
+       - name: Build docker image
         run: docker build -t my-app .

@@ -1,0 +1,120 @@
+import React, { useState } from "react";
+
+const faqData = [
+  {
+    question: "Who is eligible for the NDIS?",
+    answer: (
+      <>
+        People under 65 with a permanent and significant disability may be eligible. You can refer to the{" "}
+        <a
+          href="https://www.ndis.gov.au/applying-access-ndis/am-i-eligible"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline hover:text-blue-800"
+        >
+          Eligibility Checklist
+        </a>{" "}
+        to see if you qualify for the NDIS.
+      </>
+    ),
+  },
+  {
+    question: "How do I apply for the NDIS?",
+    answer: (
+      <>
+        To apply for the NDIS, you need to complete an{" "}
+        <a
+          href="https://www.ndis.gov.au/applying-access-ndis/how-apply"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline hover:text-blue-800"
+        >
+          Access Request Form
+        </a>
+        , which you can find on the NDIS website or by calling the NDIS contact centre.
+      </>
+    ),
+  },
+  {
+    question: "How does the NDIS funding process work?",
+    answer:
+      "Funding is based on your needs and goals, and it's discussed during your planning meeting.",
+  },
+  {
+    question: "How do I find a service provider through the NDIS?",
+    answer: (
+      <>
+        You can use the NDIS Provider Finder tool on the NDIS website to search for providers{" "}
+        <a
+          href="https://www.ndis.gov.au/participants/working-providers"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline hover:text-blue-800"
+        >
+          from here
+        </a>
+        .
+      </>
+    ),
+  },
+  {
+    question: "Can I choose my own service provider?",
+    answer:
+      "Yes, participants have the freedom to choose and change their service providers.",
+  },
+  {
+    question: "Can I start planning before my first meeting with the NDIS?",
+    answer:
+      "Yes, preparing early helps you clearly express your goals and support needs.",
+  },
+  {
+    question: "How do I manage my NDIS plan and budget?",
+    answer:
+      "You can manage it yourself, with a plan manager, or let the NDIA manage it for you.",
+  },
+  {
+    question: "What happens if I'm not happy with my service provider?",
+    answer:
+      "You can change providers or make a complaint through the NDIS Commission.",
+  },
+];
+
+export default function App() {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <div className="min-h-screen bg-white flex items-center justify-center px-4 py-12 sm:py-16">
+      <div className="w-full max-w-3xl">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-8 border-l-8 border-green-500 pl-4">
+          NDIS FAQ:
+        </h1>
+        <div className="bg-gray-100 rounded-2xl shadow-lg">
+          {faqData.map((item, index) => (
+            <div key={index} className="border-b last:border-b-0">
+              <button
+                onClick={() => toggleAccordion(index)}
+                className="w-full flex justify-between items-center p-4 sm:p-6 text-left hover:bg-gray-200 focus:outline-none transition-colors duration-200"
+              >
+                <span className="text-base sm:text-lg font-semibold text-gray-800">
+                  {item.question}
+                </span>
+                <span className="text-green-500 text-2xl font-bold select-none">
+                  {openIndex === index ? "−" : "+"}
+                </span>
+              </button>
+              {openIndex === index && (
+                <div className="px-4 sm:px-6 pb-6 text-sm sm:text-base text-gray-700 transition-all duration-300">
+                  {item.answer}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
